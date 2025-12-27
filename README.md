@@ -1,41 +1,43 @@
 Projeto DHCP via Roteador
-Objetivo
+Descrição
 
-Configurar um roteador Cisco para fornecer IP automático (via DHCP) a PCs conectados através de um switch.
+Este projeto mostra como configurar um roteador Cisco para fornecer endereços IP automaticamente a PCs em uma rede local usando DHCP.
+Com isso, os computadores não precisam de configuração manual de IP, gateway ou DNS — tudo é distribuído automaticamente pelo roteador. Ideal para prática de CCNA.
 
-Topologia e Dispositivos
-Dispositivo	Modelo Packet Tracer	Quantidade
-Roteador	1941 ou 2811	1
-Switch	2960	1
-PCs	Generic	4
+Topologia
+
+1 Roteador: Cisco 1941
+
+1 Switch: Cisco 2960
+
+4 PCs: Genéricos do Packet Tracer
 
 Conexões:
-
-Roteador → Switch: Copper Straight-Through
-
-Switch → PCs: Copper Straight-Through
 
 [PC0]---|
 [PC1]---|   
 [PC2]---|---[Switch 2960]---[Router 1941]
 [PC3]---|
 
+Objetivo
 
-Passo a Passo
+Aprender a configurar DHCP em um roteador Cisco.
 
-Ignorar assistente inicial do roteador:
+Garantir que PCs recebam IP automaticamente.
 
-Digite no quando perguntar se quer entrar no setup.
+Testar conectividade básica da rede.
 
-Configurar hostname:
+Passo a Passo (Resumo)
+
+Ignorar assistente inicial do roteador
+
+Digite no quando o setup automático aparecer.
+
+Configurar hostname e senhas (opcional, prática CCNA):
 
 enable
 configure terminal
 hostname R1
-
-
-Configurar senha (opcional):
-
 line console 0
 password cisco
 login
@@ -61,20 +63,22 @@ dns-server 8.8.8.8
 exit
 
 
-Configurar PCs para DHCP:
+Configurar PCs para DHCP
 
 Desktop → IP Configuration → marque DHCP
 
-Testar conexão:
+Testar a rede:
 
-No PC: ping 192.168.1.1
+ping 192.168.1.1 para verificar conectividade
 
-Verifique IP: ipconfig
+ipconfig nos PCs para ver o IP atribuído
 
-Resumo
+O que você aprende com este projeto
 
-PCs recebem IP automaticamente do roteador.
+Configuração básica de roteadores Cisco via CLI.
 
-DHCP pool definido no roteador com gateway e DNS.
+Criação de pools DHCP e exclusão de endereços.
 
-Senhas opcionais para proteger o roteador.
+Conectividade básica entre PCs em uma LAN.
+
+Boas práticas de CCNA (hostnames, senhas, interfaces).
