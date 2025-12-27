@@ -1,59 +1,42 @@
-Projeto DHCP via Roteador
-Descrição
+Project DHCP Network
+Description
 
-Este projeto mostra como configurar um roteador Cisco para fornecer endereços IP automaticamente a PCs em uma rede local usando DHCP.
-Com isso, os computadores não precisam de configuração manual de IP, gateway ou DNS — tudo é distribuído automaticamente pelo roteador. Ideal para prática de CCNA.
+This project demonstrates a simple LAN where PCs receive IP addresses automatically via DHCP.
+Four PCs are connected to a single switch, with a router acting as the DHCP server.
 
-Topologia
+Devices
 
-1 Roteador: Cisco 1941
+4 PCs 💻
 
-1 Switch: Cisco 2960
+1 Switch (Cisco 2960) 🟦
 
-4 PCs: Genéricos do Packet Tracer
+1 Router (Cisco 1941) 📡
 
-Conexões:
+IP Addressing Scheme
+Device	IP Address	Subnet Mask	Gateway
+PC0	DHCP	255.255.255.0	192.168.1.1
+PC1	DHCP	255.255.255.0	192.168.1.1
+PC2	DHCP	255.255.255.0	192.168.1.1
+PC3	DHCP	255.255.255.0	192.168.1.1
+Router	192.168.1.1	255.255.255.0	—
+Topology
+PC0 💻      PC1 💻
+   │          │
+PC2 💻      PC3 💻
+   │          │
+   └── Switch 2960 🟦
+          │
+      Router 1941 📡
 
-[PC0]---|
-[PC1]---|   
-[PC2]---|---[Switch 2960]---[Router 1941]
-[PC3]---|
-
-Objetivo
-
-Aprender a configurar DHCP em um roteador Cisco.
-
-Garantir que PCs recebam IP automaticamente.
-
-Testar conectividade básica da rede.
-
-Passo a Passo (Resumo)
-
-Ignorar assistente inicial do roteador
-
-Digite no quando o setup automático aparecer.
-
-Configurar hostname e senhas (opcional, prática CCNA):
-
+DHCP Configuration Commands (Router)
 enable
 configure terminal
 hostname R1
-line console 0
-password cisco
-login
-exit
-enable secret cisco123
-
-
-Configurar interface do roteador:
 
 interface gigabitEthernet0/0
 ip address 192.168.1.1 255.255.255.0
 no shutdown
 exit
-
-
-Configurar DHCP:
 
 ip dhcp excluded-address 192.168.1.1 192.168.1.5
 ip dhcp pool LAN
@@ -62,23 +45,18 @@ default-router 192.168.1.1
 dns-server 8.8.8.8
 exit
 
+Testing
 
-Configurar PCs para DHCP
+PCs configured to obtain IP via DHCP
 
-Desktop → IP Configuration → marque DHCP
+Verified IP assignment using ipconfig
 
-Testar a rede:
+Ping tests performed to the router and between PCs to confirm connectivity
 
-ping 192.168.1.1 para verificar conectividade
+Next Steps
 
-ipconfig nos PCs para ver o IP atribuído
+Implement VLANs for network segmentation
 
-O que você aprende com este projeto
+Configure routing between different subnets
 
-Configuração básica de roteadores Cisco via CLI.
-
-Criação de pools DHCP e exclusão de endereços.
-
-Conectividade básica entre PCs em uma LAN.
-
-Boas práticas de CCNA (hostnames, senhas, interfaces).
+Explore DHCP options such as lease time and multiple pools
